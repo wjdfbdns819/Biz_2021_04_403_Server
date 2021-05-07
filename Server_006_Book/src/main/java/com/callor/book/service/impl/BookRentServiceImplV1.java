@@ -140,7 +140,7 @@ public class BookRentServiceImplV1 implements BookRentService{
 
 	@Override
 	public List<BookRentDTO> findByISBN(String isbn) {
-		// TODO ISBN으로 조회
+		// TODO ISBN으로 조회검색결과가 없음
 		
 		String sql = " SELECT * FROM view_도서대여정보 ";
 		sql += "WHERE ISBN = ? ";
@@ -213,7 +213,32 @@ public class BookRentServiceImplV1 implements BookRentService{
 
 	@Override
 	public int insert(BookRentVO bookRentVO) {
-		// TODO Auto-generated method stub
+		// TODO 도서 대여정보 추가
+		String sql = " INSERT INTO tbl_book_rent ";
+		sql += "(br_seq, br_sdate, br_isbn, br_bcode, br_price) ";
+		sql += " VALUES(seq_book_rent.NEXTVAL, ?, ?, ?, ? )";
+		
+		PreparedStatement pStr = null;
+		try {
+			pStr = dbConn.prepareStatement(sql);
+			pStr.setString(1, bookRentVO.getBr_sdate());
+			pStr.setString(2, bookRentVO.getBr_isbn());
+			pStr.setString(3, bookRentVO.getBr_bcode());
+			pStr.setInt(4, bookRentVO.getBr_price());
+			
+			// insert, update, delete 와 관련된 SQL은
+			// executeUpdate() method로 처리한다
+			// 정상적으로 SQL이 성공하면 result에는 
+			//  0보다 큰값이 담긴다 
+			int result = pStr.executeUpdate();
+			pStr.close(); // insert, update, delete는 반드시 close를 해야한다
+			return result;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

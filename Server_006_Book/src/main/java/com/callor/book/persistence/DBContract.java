@@ -23,8 +23,10 @@ public class DBContract {
 		
 		String jdbcDriver = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String username = "scUser";
-		String password = "scUser";
+		String username = "bookuser";
+		String password = "bookuser";
+		
+		
 		
 		try {
 			// Java 1.7이상에서는 사용하지 않아도 되는 코드
