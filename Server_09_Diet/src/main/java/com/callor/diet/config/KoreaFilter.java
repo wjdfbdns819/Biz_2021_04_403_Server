@@ -54,7 +54,7 @@ public class KoreaFilter implements Filter{
 		 * 	데이터들의 ContentType을 설정하기
 		 */
 		req.setCharacterEncoding("UTF-8");
-		res.setContentType("text/html;charset=UTF-8");
+		//res.setContentType("text/html;charset=UTF-8");
 		
 		// 또다른 필터가 있으면 연결하여 실행하라는 코드
 		chain.doFilter(req, res);
